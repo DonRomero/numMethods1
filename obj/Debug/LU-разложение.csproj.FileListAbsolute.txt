@@ -1,0 +1,9 @@
+C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\bin\Debug\LU-разложение.exe.config
+C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\obj\Debug\LU-разложение.csprojResolveAssemblyReference.cache
+C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\obj\Debug\LU_разложение.Form1.resources
+C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\obj\Debug\LU_разложение.Properties.Resources.resources
+C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\obj\Debug\LU-разложение.csproj.GenerateResource.Cache
+C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\bin\Debug\LU-разложение.exe
+C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\bin\Debug\LU-разложение.pdb
+C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\obj\Debug\LU-разложение.exe
+C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\obj\Debug\LU-разложение.pdb
