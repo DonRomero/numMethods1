@@ -92,9 +92,8 @@ namespace LU_разложение
                     bool allzero = true;
                     for(int i=k+1;i<n;i++)
                     {
-                        if(Convert.ToInt32(mxA.Rows[numberline[i]][numberline[i]]) != 0)
+                        if(Convert.ToInt32(mxA.Rows[numberline[i]][k]) != 0)
                         {
-                            int temp = i;
                             numberline[k] = i;
                             numberline[i] = k;
                             allzero = false;
