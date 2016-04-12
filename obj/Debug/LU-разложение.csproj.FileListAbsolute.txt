@@ -7,3 +7,12 @@ C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-раз
 C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\bin\Debug\LU-разложение.pdb
 C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\obj\Debug\LU-разложение.exe
 C:\Users\Роман\Desktop\ЧислМетод\LU-разложение\LU-разложение\obj\Debug\LU-разложение.pdb
+E:\численные методы\bin\Debug\LU-разложение.exe.config
+E:\численные методы\obj\Debug\LU-разложение.exe
+E:\численные методы\obj\Debug\LU-разложение.pdb
+E:\численные методы\bin\Debug\LU-разложение.exe
+E:\численные методы\bin\Debug\LU-разложение.pdb
+E:\численные методы\obj\Debug\LU-разложение.csprojResolveAssemblyReference.cache
+E:\численные методы\obj\Debug\LU_разложение.Form1.resources
+E:\численные методы\obj\Debug\LU_разложение.Properties.Resources.resources
+E:\численные методы\obj\Debug\LU-разложение.csproj.GenerateResource.Cache

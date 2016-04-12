@@ -25,7 +25,7 @@ namespace LU_разложение
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            n = (int)numericUpDown1.Value;
+            n = (int)numericUpDown1.Value;            
             mxA = new DataTable("Матрица A");
             mxb = new DataTable("Вектор b");
             if(n>0)
@@ -63,7 +63,7 @@ namespace LU_разложение
                 mxb.Rows.Add(dataRowb);
             }
             dataGridView1.DataSource = mxA;
-            dataGridView2.DataSource = mxb;
+            dataGridView2.DataSource = mxb;           
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -74,9 +74,43 @@ namespace LU_разложение
     }
     public class LUsolver
     {
-        public void factorization()
+        int[] numberline;//адресы ячеек
+        LUsolver(int n)
         {
-
+            numberline = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                numberline[i] = i;
+            }
+        }
+        public void factorization(DataTable mxA,int n)
+        {
+            for (int k=0;k<n;k++)
+            {
+                if (Convert.ToInt32(mxA.Rows[numberline[k]][numberline[k]]) == 0)
+                {
+                    bool allzero = true;
+                    for(int i=k+1;i<n;i++)
+                    {
+                        if(Convert.ToInt32(mxA.Rows[numberline[i]][numberline[i]]) != 0)
+                        {
+                            int temp = i;
+                            numberline[k] = i;
+                            numberline[i] = k;
+                            allzero = false;
+                            break;
+                        }
+                    }
+                    if(allzero)
+                    {
+                        continue;
+                    }
+                }
+                for(int j=k+1;j<n;j++)
+                {
+                    mxA.Rows[numberline[k]][j] = Convert.ToInt32(mxA.Rows[numberline[k]][j]) / Convert.ToInt32(mxA.Rows[numberline[k]][k]);
+                }
+            }
         }
 
         public void solve()
