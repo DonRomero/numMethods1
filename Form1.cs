@@ -110,28 +110,42 @@ namespace LU_разложение
                 }
                 for(int j=k+1;j<n;j++)
                 {
-                    mxA.Rows[numberline[k]][j] = Convert.ToInt32(mxA.Rows[numberline[k]][j]) / Convert.ToInt32(mxA.Rows[numberline[k]][k]);
+                    mxA.Rows[numberline[k]][j] = Convert.ToDouble(mxA.Rows[numberline[k]][j]) / Convert.ToDouble(mxA.Rows[numberline[k]][k]);
                 }
                 for(int i=k+1;i<n;i++)
                 {
                     for(int j=k+1;j<n;j++)
                     {
-                        mxA.Rows[numberline[i]][j] = Convert.ToInt32(mxA.Rows[numberline[i]][j]) - Convert.ToInt32(mxA.Rows[numberline[i]][k]) * Convert.ToInt32(mxA.Rows[numberline[k]][j]);
+                        mxA.Rows[numberline[i]][j] = Convert.ToDouble(mxA.Rows[numberline[i]][j]) - Convert.ToDouble(mxA.Rows[numberline[i]][k]) * Convert.ToDouble(mxA.Rows[numberline[k]][j]);
                     }
                 }
             }
         }
 
-        public void solve(DataTable mxb,DataTable mxA)
+        public double[] solve(DataTable mxb,DataTable mxA)
         {
             for (int k = 0; k < n; k++)
             {
-                mxb.Rows[numberline[k]][0] = Convert.ToInt32(mxb.Rows[numberline[k]][0]) / Convert.ToInt32(mxA.Rows[numberline[k]][k]);
+                mxb.Rows[numberline[k]][0] = Convert.ToDouble(mxb.Rows[numberline[k]][0]) / Convert.ToDouble(mxA.Rows[numberline[k]][k]);
                 for (int j = 0; j < k; j++)
                 {
-                    mxb.Rows[numberline[j]][0] = Convert.ToInt32(mxb.Rows[numberline[j]][0]) / Convert.ToInt32(mxA.Rows[numberline[j]][k]) - Convert.ToInt32(mxb.Rows[numberline[k]][0]);
+                    mxb.Rows[numberline[j]][0] = Convert.ToDouble(mxb.Rows[numberline[j]][0]) / Convert.ToDouble(mxA.Rows[numberline[j]][k]) - Convert.ToDouble(mxb.Rows[numberline[k]][0]);
                 }
             }
+            double[] x = new double[n];
+            x[numberline[n - 1]] = Convert.ToDouble(mxb.Rows[numberline[n - 1]][0]) / Convert.ToDouble(mxA.Rows[numberline[n - 1]][n - 1]);
+            for(int i=0;i<n-1;i++)
+            {
+                x[i]=Convert.ToDouble(mxb.Rows[numberline[i]][0]);
+            }
+            for (int k=n-2;k>=0;k--)
+            {
+                for(int j=k;j>=0;j--)
+                {
+                    x[numberline[j]] = Convert.ToDouble(x[numberline[j]]) - Convert.ToDouble(mxA.Rows[numberline[j]][k + 1]) * Convert.ToDouble(x[numberline[k+1]]);
+                }
+            }
+            return x;
         }
 
         public void determinant()
