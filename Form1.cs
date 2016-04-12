@@ -54,10 +54,10 @@ namespace LU_разложение
             {
                 DataRow dataRowA = mxA.NewRow();
                 DataRow dataRowb = mxb.NewRow();
-                dataRowb[vbstr] = r.Next(-100, 100);
+                dataRowb[vbstr] = r.NextDouble() * 200 - 100;
                 for (int j = 0; j < n; j++)
                 {
-                    dataRowA[Convert.ToString(j)] = r.Next(-100, 100);
+                    dataRowA[Convert.ToString(j)] = r.NextDouble()*200-100;
                 }
                 mxA.Rows.Add(dataRowA);
                 mxb.Rows.Add(dataRowb);
@@ -75,24 +75,27 @@ namespace LU_разложение
     public class LUsolver
     {
         int[] numberline;//адресы ячеек
+        int n;
+        double epsilont = 10 ^ (-15);
         LUsolver(int n)
         {
+            this.n = n;
             numberline = new int[n];
             for (int i = 0; i < n; i++)
             {
                 numberline[i] = i;
             }
         }
-        public void factorization(DataTable mxA,int n)
+        public void factorization(DataTable mxA)
         {
             for (int k=0;k<n;k++)
             {
-                if (Convert.ToInt32(mxA.Rows[numberline[k]][numberline[k]]) == 0)
+                if (Convert.ToInt32(mxA.Rows[numberline[k]][numberline[k]]) < epsilont)
                 {
                     bool allzero = true;
                     for(int i=k+1;i<n;i++)
                     {
-                        if(Convert.ToInt32(mxA.Rows[numberline[i]][k]) != 0)
+                        if(Convert.ToInt32(mxA.Rows[numberline[i]][k]) > epsilont)
                         {
                             numberline[k] = i;
                             numberline[i] = k;
@@ -109,12 +112,26 @@ namespace LU_разложение
                 {
                     mxA.Rows[numberline[k]][j] = Convert.ToInt32(mxA.Rows[numberline[k]][j]) / Convert.ToInt32(mxA.Rows[numberline[k]][k]);
                 }
+                for(int i=k+1;i<n;i++)
+                {
+                    for(int j=k+1;j<n;j++)
+                    {
+                        mxA.Rows[numberline[i]][j] = Convert.ToInt32(mxA.Rows[numberline[i]][j]) - Convert.ToInt32(mxA.Rows[numberline[i]][k]) * Convert.ToInt32(mxA.Rows[numberline[k]][j]);
+                    }
+                }
             }
         }
 
-        public void solve()
+        public void solve(DataTable mxb,DataTable mxA)
         {
-
+            for (int k = 0; k < n; k++)
+            {
+                mxb.Rows[numberline[k]][0] = Convert.ToInt32(mxb.Rows[numberline[k]][0]) / Convert.ToInt32(mxA.Rows[numberline[k]][k]);
+                for (int j = 0; j < k; j++)
+                {
+                    mxb.Rows[numberline[j]][0] = Convert.ToInt32(mxb.Rows[numberline[j]][0]) / Convert.ToInt32(mxA.Rows[numberline[j]][k]) - Convert.ToInt32(mxb.Rows[numberline[k]][0]);
+                }
+            }
         }
 
         public void determinant()
