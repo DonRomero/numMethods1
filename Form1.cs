@@ -91,22 +91,16 @@ namespace LU_разложение
             for (int k=0;k<n;k++)
             {
                 if (Convert.ToInt32(mxA.Rows[numberline[k]][numberline[k]]) < epsilont)
-                {
-                    bool allzero = true;
+                {                    
                     for(int i=k+1;i<n;i++)
                     {
                         if(Convert.ToInt32(mxA.Rows[numberline[i]][k]) > epsilont)
                         {
                             numberline[k] = i;
-                            numberline[i] = k;
-                            allzero = false;
+                            numberline[i] = k;                            
                             break;
                         }
-                    }
-                    if(allzero)
-                    {
-                        continue;
-                    }
+                    }                    
                 }
                 for(int j=k+1;j<n;j++)
                 {
